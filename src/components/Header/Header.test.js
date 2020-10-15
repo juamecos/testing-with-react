@@ -2,6 +2,7 @@ import React from "react";
 import { shallow, mount } from "enzyme";
 import Header from "./Header";
 import { findByTestAttr } from "./../../../Utils";
+
 const setUp = (props = {}) => {
   const component = shallow(<Header {...props} />);
   return component;
