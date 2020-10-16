@@ -1,6 +1,10 @@
 import React from "react";
 import Header from "./components/Header";
 import Headline from "./components/Headline";
+import SharedButton from "./components/Button";
+import ListItem from "./components/ListItem";
+import { connect } from "react-redux";
+import { fetchPosts } from "./actions";
 import "./app.scss";
 
 const tempArr = [
@@ -13,7 +17,17 @@ const tempArr = [
   },
 ];
 
-function App() {
+function App(props) {
+  const { posts } = props;
+
+  const fetch = () => {
+    props.fetchPosts();
+  };
+
+  const configButton = {
+    buttonText: "Get Posts",
+    emitEvent: fetch,
+  };
   return (
     <div className="app">
       <Header />
@@ -23,9 +37,24 @@ function App() {
           desc="Clock the button to render posts"
           tempArr={tempArr}
         />
+        <SharedButton {...configButton} />
+        {posts &&
+          posts.map(({ id, title, body }) => (
+            <div key={id}>
+              <ListItem title={title} description={body} />
+            </div>
+          ))}
       </section>
     </div>
   );
 }
 
-export default App;
+const mapStateToProps = state => {
+  return {
+    posts: state.posts,
+  };
+};
+
+const mapDispatchToProps = {};
+
+export default connect(mapStateToProps, { fetchPosts })(App);
