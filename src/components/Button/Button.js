@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-const Button = ({ buttonText, emitEvent }) => {
+const SharedButton = ({ buttonText, emitEvent }) => {
   const submitEvent = () => {
     emitEvent && emitEvent();
   };
@@ -12,9 +12,9 @@ const Button = ({ buttonText, emitEvent }) => {
   );
 };
 
-Button.propTypes = {
+SharedButton.propTypes = {
   buttonText: PropTypes.string,
   emitEvent: PropTypes.func,
 };
 
-export default Button;
+export default SharedButton;
