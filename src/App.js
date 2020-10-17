@@ -29,7 +29,7 @@ function App(props) {
     emitEvent: fetch,
   };
   return (
-    <div className="app">
+    <div className="app" data-test="App">
       <Header />
       <section className="main">
         <Headline
